@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "./../components/Home.vue";
-import Welcome from "./../components/Welcome.vue";
-import Login from "./../components/Login.vue";
 
 const routes = [
   {
@@ -13,23 +11,23 @@ const routes = [
     component: Home,
     redicret: "/welcome",
     children: [
-        {
-            name: "welcome",
-            path: "/welcome",
-            meta: {
-            title: "欢迎页",
-            },
-            component: Welcome,
+      {
+        name: "welcome",
+        path: "/welcome",
+        meta: {
+          title: "欢迎页",
         },
-        {
-            name: "login",
-            path: "/login",
-            meta: {
-            title: "登录页",
-            },
-            component: Login,
-        },
+        component: () => import("../views/Welcome.vue"),
+      },
     ],
+  },
+  {
+    name: "login",
+    path: "/login",
+    meta: {
+      title: "登录",
+    },
+    component: () => import("../views/Login.vue"),
   },
 ];
 
